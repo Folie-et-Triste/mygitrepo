@@ -1,0 +1,30 @@
+ls, "Lists things in Directory", 1
+touch, "makes new file", 3
+mkdir, "makes new directory",2
+cp, "Copys Files", 3
+pwd, "Displays working directory",4
+cd, "Navigate to a new directory",2
+mv, "Move and/or move a file",3
+rm, "Deletes a file",2
+ln, "Makes a link between files",4
+clear, "clears terminal display",1
+cat, "Shows file contents on terminal",3
+echo, "Prints text to terminal",2
+man, "Show manual page for a command",2
+grep, "searchs output for a string",4
+head, "shows lines from top of a file",3
+tail, "shows lines from bottom of a file",3
+zip, "zips a file",1
+unzip, "unzips a file",1
+mount, "mounts a file system",1
+sudo, "Execute command with privileges",3
+cal, "Creates a calander",4
+alias, "Creates nickname for commands",2
+passwd," Creates password for users",1
+history, "Show previosly used commands",1
+date, "shows date and time",1
+rmdir, "Removes empty directories",3
+ps, "displays active processes.",4
+wget, "downloads files",5
+sort, "sorts file contents",1
+wc, "counts words and characters",3

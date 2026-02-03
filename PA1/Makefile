@@ -1,8 +1,10 @@
-SOURCEFiles = main.cpp 
-TESTFiles = main.cpp TestFunctions.cpp
-$(PA1): $(SOURCEFiles)
-main:
-	g++ -std=c++17 -Wall -g $(TESTFiles) -o PA1
+MainFiles = main.cpp gameWrapper.cpp header.h
+SOURCEFiles = main.cpp gameWrapper.cpp
+TESTFiles = main.cpp TestFunctions.cpp gameWrapper.cpp
+
+
+main: $(MainFiles)
+	g++ -std=c++17 -Wall -g $(SOURCEFiles) -o main
 	
 
 

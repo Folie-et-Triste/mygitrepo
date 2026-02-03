@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include <cassert>
+
+//Node Defination
 template <typename T> class Node{
     private:
     T command;
@@ -24,32 +26,55 @@ T getCommand();
 T getDesc();
 T getScore();
 };
+
+//LinkedList Class Defination 
 template <typename T> class LinkedList{
     private:
     Node<T>* head;
     public:
     LinkedList();
+    ~LinkedList();
     void setHead(Node<T>* newHead);
     Node<T>* getHead();
     bool isEmpty();
-    
     void deleteNode(T command);
     void printList();
-    
-    void fillList(std::ifstream& commandList);
+    Node<T>* traverseList(int count);
+    void fillList(std::fstream& commandList);
     void addtoEnd(T x1, T x2, T x3);
 }; 
 
-
+//gameboard Wrapper Declrations
 class gameboardWrapper{
 private:
-int questions = 20;
-int playerScore = 0;
-int leaderBoard[10]= {0};
-public:
-void printRules();
 
-    
+int playerScore = 0;
+LinkedList<std::string>* mainList;
+std::string Leaderboard[2][10] = {""};
+Node<std::string>* question;
+
+public:
+ gameboardWrapper();
+ void setList(LinkedList<std::string>* newList);
+ LinkedList<std::string>* getList();
+int getroundCount();
+int getplayerScore();
+int getleaderBoard(int x=0, int y = 0);
+Node<std::string> getQuestion();
+void setroundCount(int newCount);
+void setplayerScore(int newScore);
+void setleaderBoard(std::string newEntry, int x, int y);
+void setQuestion(Node<std::string>* newQuestion);
+void mainMenu();
+void addCommand();
+void playGame();
+void deleteCommand();
+void printRules();
+void printLeader();
+void saveandExit(); // saves files and free memory before ending program
+void addtoleaderBoard(std::string name , std::string score);
+void loadleaderBoard();
+bool checkusedWords(std::string usedWords[],std::string word, int counter); //checks an array of used words to see if current command has been asked already
 };
 
 class testWrapper{
@@ -57,6 +82,8 @@ class testWrapper{
     void readfileDebug();
     
 };
+
+//Function Defintions
 
 
 //Node Functions
@@ -102,7 +129,7 @@ return this->nextPtr;
 }
 template <typename T>
 void Node<T>::printAll(){
-    std::cout<< command << desc << score;
+    std::cout<< command << desc << score <<"\n";
 }
 
 
@@ -112,6 +139,10 @@ template <typename T>
 LinkedList<T>::LinkedList(){
     head = nullptr;
 
+}
+template <typename T>
+LinkedList<T>::~LinkedList(){
+ delete head;
 }
 
 template <typename T>
@@ -151,15 +182,11 @@ void LinkedList<T>::addtoEnd(T x1, T x2, T x3){
 
 
 template <typename T>
-void LinkedList<T>::fillList(std::ifstream& commandList){
+void LinkedList<T>::fillList(std::fstream& commandList){
     
     T temp = "";
     T temp2= "";
     T temp3 = "";
-    std::getline(commandList,temp,',');
-std::cout << temp;
-    std::getline(commandList, temp2 ,',');
-    std::getline(commandList,temp3);
 
 
 while (!commandList.eof()){
@@ -179,11 +206,35 @@ void LinkedList<T>::printList(){
     current = this->head;
 while (current->getnextPtr()!= nullptr){
     current->printAll();
+    
     current = current->getnextPtr();
 
 }
  current->printAll();
  return;
 }
+template <typename T>
+Node<T>* LinkedList<T>::traverseList(int count){
+    if (!isEmpty()){
+    Node<T>* current;
+    
+    current = this->head;
+    std::cout << "step five \n";
+    for(int i = count; i >0; i--){
+        std::cout << "For Step";
+        if(current->getnextPtr()!= nullptr){
+        std::cout << "For Step Second";
+        current = current->getnextPtr();
+    }}
+    std::cout << "step six \n";
+    return current;
+}else{
+    std::cout << "List Empty";
+    return nullptr;
+}
+
+}
+
+
 
 #endif
